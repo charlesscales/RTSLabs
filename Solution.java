@@ -38,17 +38,13 @@ public class Solution {
     
     public static String stringRotation(String input, int rotationAmount)
     {
-        StringBuilder ret = new StringBuilder();
-        int startPoint = input.length()-rotationAmount;
-        for(int i = startPoint; i < input.length(); i++)
-        {
-            ret.append(input.charAt(i));
-        }
-        for(int i = 0; i < startPoint; i++)
-        {
-            ret.append(input.charAt(i));
-        }
-        return ret.toString();
+        StringBuilder in = new StringBuilder(input);
+        int startPoint = input.length()-(rotationAmount % input.length());
+        CharSequence csBegin = in.subSequence(startPoint, input.length());
+        CharSequence csEnd = in.subSequence(0, startPoint);
+        StringBuilder out = new StringBuilder(csBegin);
+        out.append(csEnd);
+        return out.toString();
     }
 
     public static void main(String[] args) {
